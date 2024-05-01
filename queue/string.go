@@ -2,6 +2,7 @@ package queue
 
 import (
 	"cmp"
+	"net/http"
 	"slices"
 
 	"github.com/bytedance/sonic"
@@ -66,4 +67,13 @@ func Duplicate[T any](array []T, equalFunc func(i, j T) bool) []T {
 		}
 	}
 	return newArray
+}
+
+type server struct {
+}
+
+// HttpReq Function
+func (s *server) HttpReq(req *http.Request) {
+	client := new(http.Client)
+	client.Do(req)
 }
